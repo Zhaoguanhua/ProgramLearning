@@ -11,10 +11,14 @@
 """
 迭代器、生成器测试
 """
-
 import sys
 
+#***************************************************************
 #迭代器
+"""
+迭代取值，内置__iter__和__next__方法
+可以用next()方法访问，也可以用for循环访问
+"""
 class Fib:
     def __init__(self, n):
         self.prev = 0
@@ -37,7 +41,13 @@ class Fib:
 f = Fib(10)
 print([i for i in f])
 
+#***************************************************************
 #生成器
+"""
+生成器是一种简单的迭代器，使用yeild关键字
+yeild和return都可以返回值，但是return只能返回一次，yeild能返回多次
+可以用next()方法访问，也可以用for循环访问
+"""
 def fib(n):
     prev, curr = 0, 1
     while n > 0:
@@ -45,4 +55,28 @@ def fib(n):
         yield curr
         prev, curr = curr, curr + prev
 
-print([i for i in fib(10)])
+a=fib(10)
+
+res1 = next(a)
+print(res1)
+res2 = next(a)
+print(res2)
+res3 = next(a)
+print(res3)
+res4 = next(a)
+print(res4)
+
+#***************************************************************
+#生成器表达式
+g=(i**2 for i in range(1,6) if i >3)
+print(g)
+print(next(g))
+print(next(g))
+
+#***************************************************************
+#列表生成式
+l=[i**2 for i in range(1,6) if i >3]
+print(l)
+
+
+
